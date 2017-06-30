@@ -24,5 +24,5 @@ function Animation(imageArray)
         }
         
         return this.sequence[index];
-    }
+    };
 }

@@ -8,7 +8,7 @@ game.level = 0;
 
 game.start = function()
 {
-    var level = maps[game.level]
+    var level = maps[game.level];
     scene.setScene(level);
     game.startTime = Date.now();
     input.start();
@@ -22,9 +22,13 @@ game.main = function()
     {
         game.update();
         renderer.draw();
-        window.requestAnimationFrame(game.main);
+       
     }
-
+    else
+    {
+        hud.drawGameOver();
+    }
+        window.requestAnimationFrame(game.main);
 };
 
 // Update game objects
@@ -43,7 +47,7 @@ game.update = function()
         }
         else
         {
-            game.isOver = true;
+            hud.drawGameOver();
         }
     }
 
@@ -53,8 +57,11 @@ game.update = function()
         if ( hazard.isTouching(player) )
         {
             game.isOver = true;
-            this.image.src = "Assets/Fusion_Frogs_GameOver.png";
         }
     }
 };
 
+
+var bgmusic = new Audio("Assets/bgmusic.wav");
+bgmusic.loop = true;
+bgmusic.play();
